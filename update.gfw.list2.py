@@ -3,7 +3,7 @@ import base64
 import re
 
 RECORDS_FILE = '/root/ros_dns_helper/custom_domain.txt'
-# dns_server = "8.8.8.8"
+dns_server = "8.8.8.8"
 rsc_file = "/root/nginx_www/gfw.domain.rsc"
 
 
