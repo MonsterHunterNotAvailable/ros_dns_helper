@@ -174,7 +174,7 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
 
     def execute_local_program(self):
         try:
-            output = subprocess.check_output(['python3', 'update.gfw.list.py'], stderr=subprocess.STDOUT)
+            output = subprocess.check_output(['python3', 'update.gfw.list2.py'], stderr=subprocess.STDOUT)
             return output.decode()
         except subprocess.CalledProcessError as e:
             return f"执行程序时出错：{e.output.decode()}"
