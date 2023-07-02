@@ -45,9 +45,9 @@ def generate_rsc_file(dns_server, domain_list, file_path, nf_list, vip_domain):
         # rsc_file.write(
         #     '''/ip firewall address-list remove [/ip firewall address-list find list="nf_list"] \n'''
         # )
-        rsc_file.write(
-            '''/ip firewall address-list remove [/ip firewall address-list find list="gfw_list"] \n'''
-        )
+        # rsc_file.write(
+        #     '''/ip firewall address-list remove [/ip firewall address-list find list="gfw_list"] \n'''
+        # )
         print(file_path + " generated")
 
 dns_server = "8.8.8.8"
@@ -90,20 +90,30 @@ nf_list = [
     'hulu.com',
     'huluim.com',
     'hbogo.com',
-    'openai.com',
-    'challenges.cloudflare.com',
-    'ai.com'
 ]
 
 vip_domain = [
-    '.me',
-    '.hk',
-    '.tw',
-    '.jp',
-    '.sg',
-    '.ph',
-    '.co'
+    # '.me',
+    # '.hk',
+    # '.tw',
+    # '.jp',
+    # '.sg',
+    # '.ph',
+    # '.co'
 ]
+
+RECORDS_FILE = 'custom_domain.txt'
+
+with open(RECORDS_FILE, "r") as file:
+    lines = file.readlines()
+
+for line in lines:
+    _domain = line.split(" ")[0]
+    _type = line.split(" ")[1]
+    if(_type == "netflix"):
+        nf_list.append(_domain)
+    if(_type == "vpn"):
+        vip_domain.append(_domain)
 
 generate_rsc_file(dns_server, domain_list, file_path, nf_list, vip_domain)
 
