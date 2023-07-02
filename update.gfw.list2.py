@@ -108,11 +108,11 @@ with open(RECORDS_FILE, "r") as file:
     lines = file.readlines()
 
 for line in lines:
-    _domain = line.split(" ")[0]
-    _type = line.split(" ")[1]
-    if(_type == "netflix"):
+    _domain = line.split(" ")[0].lstrip()
+    _type = line.split(" ")[1].lstrip()
+    if(_type .__contains__( "netflix")):
         nf_list.append(_domain)
-    if(_type == "vpn"):
+    if(_type .__contains__( "vpn")):
         vip_domain.append(_domain)
 
 print("netflix doman")
