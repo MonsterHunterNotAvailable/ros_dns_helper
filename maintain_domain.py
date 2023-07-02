@@ -2,7 +2,6 @@ import subprocess
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs
 import base64
-import re
 
 # 定义用户验证信息
 VALID_USERNAME = 'gfw'
