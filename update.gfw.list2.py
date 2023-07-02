@@ -6,7 +6,6 @@ RECORDS_FILE = '/root/ros_dns_helper/custom_domain.txt'
 dns_server = "8.8.8.8"
 rsc_file = "/root/nginx_www/gfw.domain.rsc"
 
-
 url = "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt"
 
 content = urllib.request.urlopen(url).read()
@@ -26,6 +25,7 @@ for line in lines:
         manipulated_lines.append(line)
 
 manipulated_lines = sorted(set(manipulated_lines))
+
 
 # print(manipulated_lines)
 
@@ -58,44 +58,13 @@ def generate_rsc_file(dns_server, domain_list, file_path, nf_list, vip_domain):
 
 
 domain_list = manipulated_lines
-
-nf_list = [
-    'netflix.com',
-    'netflix.net',
-    'nflxext.com',
-    'nflximg.com',
-    'nflximg.net',
-    'nflxsearch.net',
-    'nflxso.net',
-    'nflxvideo.net',
-    'netflixdnstest0.com',
-    'netflixdnstest1.com',
-    'netflixdnstest2.com',
-    'netflixdnstest3.com',
-    'netflixdnstest4.com',
-    'netflixdnstest5.com',
-    'netflixdnstest6.com',
-    'netflixdnstest7.com',
-    'netflixdnstest8.com',
-    'netflixdnstest9.com',
-    'pandora.com',
-    'tunein.com',
-    'hbo.com',
-    'hbonow.com',
-    'hboasia.com',
-    'hbogoasia.com',
-    'hbogoasia.hk',
-    'hbolb.onwardsmg.com',
-    'hbounify-prod.evergent.com',
-    'bcbolthboa-a.akamaihd.net',
-    'amazonaws.com',
-    'aws.amazon.com',
-    'awsstatic.com',
-    'fast.com',
-    'hulu.com',
-    'huluim.com',
-    'hbogo.com',
-]
+nf_list = ['netflix.com', 'netflix.net', 'nflxext.com', 'nflximg.com', 'nflximg.net', 'nflxso.net', 'nflxvideo.net',
+           'netflixdnstest0.com', 'netflixdnstest1.com', 'netflixdnstest2.com', 'netflixdnstest3.com',
+           'netflixdnstest4.com', 'netflixdnstest5.com', 'netflixdnstest6.com', 'netflixdnstest7.com',
+           'netflixdnstest8.com', 'netflixdnstest9.com', 'pandora.com', 'tunein.com', 'hbo.com', 'hbonow.com',
+           'hboasia.com', 'hbogoasia.com', 'hbogoasia.hk', 'hbolb.onwardsmg.com', 'hbounify-prod.evergent.com',
+           'bcbolthboa-a.akamaihd.net', 'amazonaws.com', 'aws.amazon.com', 'awsstatic.com', 'fast.com', 'hulu.com',
+           'huluim.com', 'hbogo.com', 'netvigator.com', '1e100.net', 'imsbiz.com', 'spcsdns.net']
 
 vip_domain = [
     # '.me',
@@ -107,16 +76,15 @@ vip_domain = [
     # '.co'
 ]
 
-
 with open(RECORDS_FILE, "r") as file:
     lines = file.readlines()
 
 for line in lines:
     _domain = line.split(" ")[0].lstrip()
     _type = line.split(" ")[1].lstrip()
-    if(_type .__contains__( "netflix")):
+    if (_type.__contains__("netflix")):
         nf_list.append(_domain)
-    if(_type .__contains__( "vpn")):
+    if (_type.__contains__("vpn")):
         vip_domain.append(_domain)
 
 print("netflix doman")
