@@ -115,6 +115,11 @@ for line in lines:
     if(_type == "vpn"):
         vip_domain.append(_domain)
 
+print("netflix doman")
+print(nf_list)
+print("user add vpn domain")
+print(vip_domain)
+
 generate_rsc_file(dns_server, domain_list, file_path, nf_list, vip_domain)
 
 print('''
