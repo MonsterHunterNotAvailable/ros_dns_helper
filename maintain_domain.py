@@ -4,12 +4,13 @@ from urllib.parse import parse_qs
 import base64
 
 # 定义用户验证信息
-VALID_USERNAME = 'gfw'
-VALID_PASSWORD = '1234567'
+VALID_USERNAME = 'dddd'
+VALID_PASSWORD = 'aidangaiguo'
 
 # 定义记录文件路径
-RECORDS_FILE = 'custom_domain.txt'
-
+RECORDS_FILE = '/root/ros_dns_helper/custom_domain.txt'
+exec_py_file = '/root/ros_dns_helper/update.gfw.list2.py'
+HTTP_PORT=9983
 
 # HTTP请求处理类
 class MyHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -173,7 +174,7 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
 
     def execute_local_program(self):
         try:
-            output = subprocess.check_output(['python3', 'update.gfw.list2.py'], stderr=subprocess.STDOUT)
+            output = subprocess.check_output(['python3', exec_py_file], stderr=subprocess.STDOUT)
             return output.decode()
         except subprocess.CalledProcessError as e:
             return f"执行程序时出错：{e.output.decode()}"
@@ -181,7 +182,7 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
 
 # 启动HTTP服务器
 def run_server():
-    server_address = ('', 8000)
+    server_address = ('', HTTP_PORT)
     httpd = HTTPServer(server_address, MyHTTPRequestHandler)
     httpd.serve_forever()
 

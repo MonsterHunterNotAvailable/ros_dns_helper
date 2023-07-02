@@ -2,6 +2,11 @@ import urllib.request
 import base64
 import re
 
+RECORDS_FILE = '/root/ros_dns_helper/custom_domain.txt'
+dns_server = "8.8.8.8"
+rsc_file = "/root/nginx_www/gfw.domain.rsc"
+
+
 url = "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt"
 
 content = urllib.request.urlopen(url).read()
@@ -50,9 +55,8 @@ def generate_rsc_file(dns_server, domain_list, file_path, nf_list, vip_domain):
         # )
         print(file_path + " generated")
 
-dns_server = "8.8.8.8"
+
 domain_list = manipulated_lines
-file_path = "gfw.domain.rsc"
 
 nf_list = [
     'netflix.com',
@@ -102,7 +106,6 @@ vip_domain = [
     # '.co'
 ]
 
-RECORDS_FILE = 'custom_domain.txt'
 
 with open(RECORDS_FILE, "r") as file:
     lines = file.readlines()
@@ -120,7 +123,7 @@ print(nf_list)
 print("user add vpn domain")
 print(vip_domain)
 
-generate_rsc_file(dns_server, domain_list, file_path, nf_list, vip_domain)
+generate_rsc_file(dns_server, domain_list, rsc_file, nf_list, vip_domain)
 
 print('''
 /tool fetch url=http://23.234.233.149:9982/gfw.domain.rsc dst-path=gfw.domain.rsc
