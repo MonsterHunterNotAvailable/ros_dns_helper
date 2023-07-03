@@ -1,0 +1,9 @@
+{
+  "web_user_name": "admin",
+  "web_pass_word": "admin",
+  "out_put_file_dir": "./",
+  "recorder_file_dir": "./",
+  "exec_py_file": "update.gfw.list.func.py",
+  "http_port": 10001,
+  "dns_server": "8.8.8.8"
+}

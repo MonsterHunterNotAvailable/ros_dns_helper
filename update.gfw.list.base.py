@@ -1,6 +1,6 @@
-import urllib.request
 import base64
 import re
+import urllib.request
 
 url = "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt"
 

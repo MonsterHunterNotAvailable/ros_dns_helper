@@ -1,16 +1,32 @@
+import base64
+import json
+import os
 import subprocess
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs
-import base64
+
+current_path = os.path.dirname(os.path.abspath(__file__))
+current_path += "/"
+##读取配置文件
+conf_file = current_path + "conf.json"
+conf_json = {}
+with open(conf_file, "r", encoding="utf-8") as f:
+    conf_json = json.load(f)
 
 # 定义用户验证信息
-VALID_USERNAME = 'dddd'
-VALID_PASSWORD = 'aidangaiguo'
-
+VALID_USERNAME = conf_json["web_user_name"]
+VALID_PASSWORD = conf_json["web_pass_word"]
 # 定义记录文件路径
-RECORDS_FILE = '/root/ros_dns_helper/custom_domain.txt'
-exec_py_file = '/root/ros_dns_helper/update.gfw.list2.py'
-HTTP_PORT=9983
+RECORDS_FILE = conf_json["recorder_file_dir"] + "/custom_domain.txt"
+NF_LIST_FILE = current_path + "netflix_domains.json"
+
+EXEC_PY_FILE = current_path + conf_json["exec_py_file"]
+HTTP_PORT = conf_json["http_port"]
+
+
+##读取配置文件
+
+##读取配置文件
 
 # HTTP请求处理类
 class MyHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -26,21 +42,27 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
 
             # 读取记录文件内容
             records = self.read_records()
+            records_nf = self.read_records_nf()
 
             # 构建HTML响应内容
             response_content = '<html><body>'
-            response_content += '<h1>自定义记录列表</h1>'
+            response_content += '<h4>预定义奈飞域名列表</h4>'
+            response_content += '<ul>'
+            for record in records_nf:
+                response_content += record + '<br>'
+            response_content += '</ul>'
+            response_content += '<h4>自定义域名记录列表</h4>'
             response_content += '<ul>'
             for record in records:
                 response_content += '<li>' + record + ' <a href="/delete?record=' + record + '">删除</a></li>'
             response_content += '</ul>'
-            response_content += '<h1>添加自定义域名记录</h1>'
+            response_content += '<h4>添加自定义域名记录</h4>'
             response_content += '<form method="POST" action="/add">'
             response_content += '<input type="text" name="record">'
             response_content += '<input type="submit" value="添加奈飞" formaction="/add?param=netflix">'
             response_content += '<input type="submit" value="添加翻墙" formaction="/add?param=vpn">'
             response_content += '</form>'
-            response_content += '<h1>点击生成rsc</h1>'
+            response_content += '<h4>点击生成rsc</h4>'
             response_content += '<a href="/execute">生成</a>'
             response_content += '</body></html>'
             response_content += '</body></html>'
@@ -83,7 +105,7 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
 
             # 构建 HTML 响应内容
             response_content = '<html><body>'
-            response_content += '<h1>执行本地程序</h1>'
+            response_content += '<h1>生成rsc响应</h1>'
             response_content += '<pre>' + output + '</pre>'
             response_content += '</body></html>'
 
@@ -151,6 +173,15 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
             records = []
         return records
 
+    def read_records_nf(self):
+        try:
+            with open(NF_LIST_FILE, "r", encoding="utf-8") as f:
+                tmp = json.load(f)
+                records = tmp["netflix"]
+        except IOError:
+            records = []
+        return records
+
     # 写入记录到文件
     def write_records(self, records):
         with open(RECORDS_FILE, 'w') as file:
@@ -174,7 +205,7 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
 
     def execute_local_program(self):
         try:
-            output = subprocess.check_output(['python3', exec_py_file], stderr=subprocess.STDOUT)
+            output = subprocess.check_output(['python3', EXEC_PY_FILE], stderr=subprocess.STDOUT)
             return output.decode()
         except subprocess.CalledProcessError as e:
             return f"执行程序时出错：{e.output.decode()}"
