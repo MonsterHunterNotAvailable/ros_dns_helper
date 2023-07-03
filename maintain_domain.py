@@ -46,6 +46,7 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
 
             # 构建HTML响应内容
             response_content = '<html><body>'
+            response_content += '<h4>1、从gfwlist下载域名，生成ros7的倒入文件 2、支持自己添加域名 添加的域名氛围翻墙域名和奈飞分流域名 3、利用ros7的新特性域名查询结果自动加到address list(gfw_list 和 nf_list) /h4>'
             response_content += '<h4>预定义奈飞域名列表</h4>'
             response_content += '<ul>'
             for record in records_nf:
@@ -105,7 +106,7 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
 
             # 构建 HTML 响应内容
             response_content = '<html><body>'
-            response_content += '<h1>生成rsc响应</h1>'
+            response_content += '<h4>生成rsc响应</h4>'
             response_content += '<pre>' + output + '</pre>'
             response_content += '</body></html>'
 
