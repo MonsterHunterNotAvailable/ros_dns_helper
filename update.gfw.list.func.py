@@ -42,8 +42,8 @@ GFW_LINES = sorted(set(GFW_LINES))
 
 def generate_rsc_file(dns_server, domain_list, file_path, nf_list, user_add_domains):
     with open(file_path, "w", encoding="utf-8") as rsc_file:
-        # rsc_file.write(":global dnsserver \"%s\"\n" % dns_server)
-        rsc_file.write(":global dnsserver \n")
+        rsc_file.write(":global dnsserver \"%s\"\n" % dns_server)
+        # rsc_file.write(":global dnsserver \n")
         rsc_file.write("/ip dns static remove [find type=FWD]\n")
         rsc_file.write("/ip dns static\n")
         for domain in domain_list:
