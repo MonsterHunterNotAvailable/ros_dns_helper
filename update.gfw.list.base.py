@@ -107,9 +107,3 @@ vip_domain = [
 
 generate_rsc_file(dns_server, domain_list, file_path, nf_list, vip_domain)
 
-print('''
-:local url "http://23.234.233.149:9982/gfw.domain.rsc"
-:local scriptName "gfw.domain.rsc"
-/tool fetch url=$url dst-path=$scriptName
-/import file-name=$scriptName
-''')
