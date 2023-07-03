@@ -13,7 +13,7 @@ with open(conf_file, "r", encoding="utf-8") as f:
     conf_json = json.load(f)
 
 # 定义记录文件路径
-RECORDS_FILE = conf_json["recorder_file_dir"] + "/custom_domain.txt"
+RECORDS_FILE = current_path + "/custom_domain.txt"
 DNS_SERVER = conf_json["dns_server"]
 RSC_FILE = conf_json["out_put_file_dir"] + "/gfw.domain.rsc"
 NF_LIST = []

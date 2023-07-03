@@ -17,7 +17,7 @@ with open(conf_file, "r", encoding="utf-8") as f:
 VALID_USERNAME = conf_json["web_user_name"]
 VALID_PASSWORD = conf_json["web_pass_word"]
 # 定义记录文件路径
-RECORDS_FILE = conf_json["recorder_file_dir"] + "/custom_domain.txt"
+RECORDS_FILE = current_path + "/custom_domain.txt"
 NF_LIST_FILE = current_path + "netflix_domains.json"
 
 EXEC_PY_FILE = current_path + conf_json["exec_py_file"]
