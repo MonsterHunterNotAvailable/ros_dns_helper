@@ -107,6 +107,7 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
             # 构建 HTML 响应内容
             response_content = '<html><body>'
             response_content += '<h4>生成rsc响应</h4>'
+
             response_content += '<pre>' + output + '</pre>'
             response_content += '</body></html>'
 
