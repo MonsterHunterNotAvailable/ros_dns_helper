@@ -10,3 +10,6 @@
    b 可以自己在gfwlist的基础上添加域名，添加奈飞分流域名</br>
    c 域名解析自动存入gfw_list或是nf_list的addresslist 方便您mark route<br>
    d ros上设置下 dnsserver 的环境变量为你的特殊dns server</br>
+
+tips:</br>
+   routeos 上 mange output 链 dst = 8.8.8.8 mark route xxx
