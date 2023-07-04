@@ -27,7 +27,7 @@ routeos的dns服务器本身支持把域名解析forward到另外一个dns服务
 
 2、如果想实现匹配域名列表的ip自动走vip通道，在去mangle里面 mark一下route</br>
 
-     ```chain=prerouting action=mark-routing new-routing-mark=vip_route
+     chain=prerouting action=mark-routing new-routing-mark=vip_route
       passthrough=no src-address=192.168.0.0/16 dst-address=!192.168.0.0/16 
       dst-address-list=your_address_list log=no log-prefix="vip_log" ```</br>
 
