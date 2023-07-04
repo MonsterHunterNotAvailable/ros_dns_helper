@@ -40,6 +40,7 @@ for line in lines:
 
 GFW_LINES = sorted(set(GFW_LINES))
 
+
 def generate_rsc_file(dns_server, domain_list, file_path, nf_list, user_add_domains):
     with open(file_path, "w", encoding="utf-8") as rsc_file:
         rsc_file.write(":global dnsserver \"%s\"\n" % dns_server)
@@ -59,6 +60,7 @@ def generate_rsc_file(dns_server, domain_list, file_path, nf_list, user_add_doma
             rsc_file.write(
                 ":do { add forward-to=$dnsserver type=FWD address-list=gfw_list match-subdomain=yes name=%s } on-error={}\n" % (
                     domain))
+        rsc_file.write("/ip dns cache flush\n")
         print(file_path + " generated")
 
 
