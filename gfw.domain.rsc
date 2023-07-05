@@ -1,4 +1,4 @@
-:global dnsserver 
+:global dnsserver "8.8.8.8"
 /ip dns static remove [find type=FWD]
 /ip dns static
 :do { add forward-to=$dnsserver type=FWD address-list=gfw_list match-subdomain=yes name=000webhost.com } on-error={}
@@ -5925,6 +5925,7 @@
 :do { add forward-to=$dnsserver type=FWD address-list=nf_list match-subdomain=yes name=nflximg.net } on-error={}
 :do { add forward-to=$dnsserver type=FWD address-list=nf_list match-subdomain=yes name=nflxso.net } on-error={}
 :do { add forward-to=$dnsserver type=FWD address-list=nf_list match-subdomain=yes name=nflxvideo.net } on-error={}
+:do { add forward-to=$dnsserver type=FWD address-list=nf_list match-subdomain=yes name=nflxsearch.net } on-error={}
 :do { add forward-to=$dnsserver type=FWD address-list=nf_list match-subdomain=yes name=netflixdnstest0.com } on-error={}
 :do { add forward-to=$dnsserver type=FWD address-list=nf_list match-subdomain=yes name=netflixdnstest1.com } on-error={}
 :do { add forward-to=$dnsserver type=FWD address-list=nf_list match-subdomain=yes name=netflixdnstest2.com } on-error={}
@@ -5966,3 +5967,4 @@
 :do { add forward-to=$dnsserver type=FWD address-list=gfw_list match-subdomain=yes name=.sg } on-error={}
 :do { add forward-to=$dnsserver type=FWD address-list=gfw_list match-subdomain=yes name=.ph } on-error={}
 :do { add forward-to=$dnsserver type=FWD address-list=gfw_list match-subdomain=yes name=.co } on-error={}
+/ip dns cache flush

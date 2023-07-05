@@ -20,7 +20,7 @@ VALID_PASSWORD = conf_json["web_pass_word"]
 RECORDS_FILE = current_path + "/custom_domain.txt"
 NF_LIST_FILE = current_path + "netflix_domains.json"
 
-EXEC_PY_FILE = current_path + conf_json["exec_py_file"]
+EXEC_PY_FILE = current_path + "update.gfw.list.func.py"
 HTTP_PORT = conf_json["http_port"]
 
 
@@ -219,6 +219,7 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
 def run_server():
     server_address = ('', HTTP_PORT)
     httpd = HTTPServer(server_address, MyHTTPRequestHandler)
+    print("server listening on port " + str(HTTP_PORT))
     httpd.serve_forever()
 
 
