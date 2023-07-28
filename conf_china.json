@@ -1,0 +1,7 @@
+{
+  "web_user_name": "admin",
+  "web_pass_word": "admin",
+  "out_put_file_dir": "./",
+  "http_port": 10001,
+  "dns_server": "114.114.114.114"
+}
