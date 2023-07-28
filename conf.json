@@ -3,5 +3,6 @@
   "web_pass_word": "admin",
   "out_put_file_dir": "./",
   "http_port": 10001,
-  "dns_server": "8.8.8.8"
+  "dns_server": "8.8.8.8",
+
 }
