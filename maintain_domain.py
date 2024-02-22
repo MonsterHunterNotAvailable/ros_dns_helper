@@ -51,13 +51,20 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
                                 '3、利用ros7的新特性域名查询结果自动加到address list(gfw_list 和 nf_list)<br></h4>'
             response_content += '<h4>预定义奈飞域名列表</h4>'
             response_content += '<ul>'
+            idx = 0
             for record in records_nf:
-                response_content += record + '<br>'
+                response_content += record
+                if idx%5 ==0 :
+                    response_content += '<br>'
+                else:
+                    response_content += '&nbsp; &nbsp; &nbsp;'
+                idx += 1
             response_content += '</ul>'
             response_content += '<h4>自定义域名记录列表</h4>'
             response_content += '<ul>'
             for record in records:
-                response_content += '<li>' + record + ' <a href="/delete?record=' + record + '">删除</a></li>'
+                r2 = record.replace(" "," &#09; ")
+                response_content += '<li>' + r2 + ' &#09; <a href="/delete?record=' + record + '">删除</a></li>'
             response_content += '</ul>'
             response_content += '<h4>添加自定义域名记录</h4>'
             response_content += '<form method="POST" action="/add">'
