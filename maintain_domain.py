@@ -66,7 +66,9 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
             for record in records:
                 r1 = record.split(" ")[0]
                 r2 = record.split(" ")[1]
+                response_content += '<tr>'
                 response_content += '<li>' + '<td>' +  r1 + '</td> <td>' + r2 + '</td> <td> <a href="/delete?record=' + record + '">删除</a>  </td>  </li>'
+                response_content += '</tr>'
             response_content += '</table>'
             response_content += '</ul>'
             response_content += '<h4>添加自定义域名记录</h4>'
