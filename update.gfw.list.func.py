@@ -61,7 +61,7 @@ def generate_rsc_file(dns_server, domain_list, file_path, nf_list, user_add_doma
                 ":do { add forward-to=$dnsserver type=FWD address-list=gfw_list match-subdomain=yes name=%s } on-error={}\n" % (
                     domain))
         rsc_file.write("/ip dns cache flush\n")
-        print(file_path + " generated")
+        # print(file_path + " generated")
 
 
 user_add_domains = []
@@ -77,10 +77,10 @@ for line in lines:
     if (_type.__contains__("vpn")):
         user_add_domains.append(_domain)
 
-print("netflix doman")
-print(NF_LIST)
-print("user add vpn domain")
-print(user_add_domains)
+# print("netflix doman")
+# print(NF_LIST)
+# print("user add vpn domain")
+# print(user_add_domains)
 
 generate_rsc_file(DNS_SERVER, GFW_LINES, RSC_FILE, NF_LIST, user_add_domains)
 
