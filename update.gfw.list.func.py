@@ -61,6 +61,7 @@ def generate_rsc_file(dns_server, domain_list, file_path, nf_list, user_add_doma
                 ":do { add forward-to=$dnsserver type=FWD address-list=gfw_list match-subdomain=yes name=%s } on-error={}\n" % (
                     domain))
         rsc_file.write("/ip dns cache flush\n")
+        print("生成配置文件记录条目数 " + str((len(nf_list) + len(user_add_domains) + len(domain_list))))
         # print(file_path + " generated")
 
 
