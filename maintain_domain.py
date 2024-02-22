@@ -52,13 +52,18 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
             response_content += '<h4>预定义奈飞域名列表</h4>'
             response_content += '<ul>'
             idx = 1
+            records_nf = sorted(records_nf)
+            response_content += '<table>'
+            response_content += '<tr>'
             for record in records_nf:
-                response_content += record
                 if idx % 5 == 0:
-                    response_content += '<br>'
+                    response_content += '<td width="400">' + record + '</td> </tr><tr>'
                 else:
-                    response_content += '&nbsp; &nbsp; &nbsp;'
+                    response_content += '<td width="400">' + record + '</td>'
                 idx += 1
+            response_content += '</tr>'
+            response_content += '</table>'
+
             response_content += '</ul>'
             response_content += '<h4>自定义域名记录列表</h4>'
             response_content += '<ul>'
