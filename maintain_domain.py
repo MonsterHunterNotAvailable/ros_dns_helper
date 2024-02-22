@@ -62,13 +62,12 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
             response_content += '</ul>'
             response_content += '<h4>自定义域名记录列表</h4>'
             response_content += '<ul>'
+            response_content += '<table>'
             for record in records:
                 r1 = record.split(" ")[0]
                 r2 = record.split(" ")[1]
-                y = len(r1)
-                for x in range(0, 40 - y):
-                    r1 += "&nbsp;"
-                response_content += '<li>' + r1 + r2 + '&nbsp; &nbsp;&nbsp; &nbsp; <a href="/delete?record=' + record + '">删除</a></li>'
+                response_content += '<li>' + '<td>' +  r1 + '</td> <td>' + r2 + '</td> <td> <a href="/delete?record=' + record + '">删除</a>  </td>  </li>'
+            response_content += '</table>'
             response_content += '</ul>'
             response_content += '<h4>添加自定义域名记录</h4>'
             response_content += '<form method="POST" action="/add">'
