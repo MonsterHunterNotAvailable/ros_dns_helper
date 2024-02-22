@@ -57,9 +57,9 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
             response_content += '<tr>'
             for record in records_nf:
                 if idx % 5 == 0:
-                    response_content += '<td width="400">' + record + '</td> </tr><tr>'
+                    response_content += '<td width="200">' + record + '</td> </tr><tr>'
                 else:
-                    response_content += '<td width="400">' + record + '</td>'
+                    response_content += '<td width="200">' + record + '</td>'
                 idx += 1
             response_content += '</tr>'
             response_content += '</table>'
