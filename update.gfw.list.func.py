@@ -62,6 +62,8 @@ def generate_rsc_file(dns_server, domain_list, file_path, nf_list, user_add_doma
                     domain))
         rsc_file.write("/ip dns cache flush\n")
         print("生成配置文件记录条目数 " + str((len(nf_list) + len(user_add_domains) + len(domain_list))))
+        print("请在ros控制台执行下面命令")
+        print("")
         # print(file_path + " generated")
 
 
